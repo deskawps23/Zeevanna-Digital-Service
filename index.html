@@ -299,9 +299,38 @@
         <div class="section-title" style="margin-top:20px;">💳 Metode Pembayaran</div>
         <div style="display:flex;justify-content:space-around;gap:10px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
             <div style="text-align:center;">
-                <!-- Ganti src dengan QRIS-mu -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/QRIS_logo.svg/120px-QRIS_logo.svg.png" alt="QRIS" style="width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f5f5fa;padding:8px;">
-                <div style="font-size:12px;margin-top:4px;">QRIS</div>
+                <!-- import React from 'react';
+import { View, Text, Image, StyleSheet, Button, Linking } from 'react-native';
+
+export default function App() {
+  const qrisImage = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355";
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>QRIS Pembayaran</Text>
+      <Text style={styles.merchant}>Zeevanna Digital & Kreatif</Text>
+      <Text style={styles.location}>KP. BATUR LOR</Text>
+      <Text style={styles.nmid}>NMID: ID1026535679355</Text>
+
+      <Image source={{ uri: qrisImage }} style={styles.qr} />
+
+      <View style={styles.buttonContainer}>
+        <Button title="Bagikan" onPress={() => Linking.openURL(qrisImage)} />
+        <Button title="Download" onPress={() => Linking.openURL(qrisImage)} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
+  title: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
+  merchant: { fontSize: 18, marginBottom: 5 },
+  location: { fontSize: 16, marginBottom: 5 },
+  nmid: { fontSize: 14, marginBottom: 20 },
+  qr: { width: 250, height: 250, marginBottom: 20 },
+  buttonContainer: { flexDirection: 'row', gap: 10 }
+});
             </div>
             <div style="text-align:center;">
                 <div style="font-size:40px;line-height:1;">📱</div>
