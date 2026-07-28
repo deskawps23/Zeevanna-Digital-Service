@@ -13,76 +13,158 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #f4f4f9;
+            background: #f0f0f5;
             color: #1e1e2f;
-            padding: 16px;
-            max-width: 500px;
-            margin: 0 auto;
+            padding-bottom: 80px;
         }
         .header {
             background: linear-gradient(135deg, #6C3CE1, #8B5CF6);
+            padding: 24px 20px 40px;
+            border-radius: 0 0 30px 30px;
             color: #fff;
-            padding: 24px 20px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 24px rgba(108, 60, 225, 0.25);
         }
-        .header h1 {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .header p {
-            font-size: 15px;
+        .header .greeting {
+            font-size: 14px;
             opacity: 0.9;
-            margin-top: 4px;
+        }
+        .header .brand {
+            font-size: 22px;
+            font-weight: 800;
+            margin-top: 2px;
         }
         .header .sub {
-            font-size: 12px;
+            font-size: 13px;
             opacity: 0.8;
-            margin-top: 6px;
+            margin-top: 4px;
         }
-        .card {
+        .saldo-card {
             background: #fff;
-            border-radius: 18px;
-            padding: 20px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            margin-bottom: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            margin: -20px 16px 20px;
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .card h2 {
+        .saldo-card .label {
+            font-size: 14px;
+            color: #888;
+        }
+        .saldo-card .value {
+            font-size: 22px;
+            font-weight: 800;
+            color: #6C3CE1;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding: 0 16px 20px;
+        }
+        .menu-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-decoration: none;
+            color: #1e1e2f;
+            transition: transform 0.2s;
+        }
+        .menu-item:active {
+            transform: scale(0.95);
+        }
+        .menu-item .icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .menu-item .label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .promo-card {
+            background: #fff;
+            margin: 0 16px 20px;
+            border-radius: 20px;
+            padding: 16px 20px;
+            border-left: 6px solid #6C3CE1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .promo-card .title {
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .promo-card .desc {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 12px;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+        }
+        .bottom-nav a {
+            text-decoration: none;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
+            flex: 1;
+        }
+        .bottom-nav a.active {
+            color: #6C3CE1;
+        }
+        .bottom-nav a .icon {
+            font-size: 22px;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .section {
+            padding: 0 16px 20px;
+        }
+        .section-title {
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #6C3CE1;
+            color: #1e1e2f;
+        }
+        .service-list {
+            background: #fff;
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .service-item {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f5;
         }
-        .btn-wa {
-            display: block;
-            background: #25D366;
-            color: #fff;
-            padding: 16px;
-            border: none;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 17px;
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        .service-item .name {
+            font-weight: 500;
+        }
+        .service-item .price {
             font-weight: 700;
-            text-decoration: none;
-            margin: 8px 0;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            transition: transform 0.2s;
-        }
-        .btn-wa:active {
-            transform: scale(0.97);
+            color: #6C3CE1;
         }
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 12px;
+            margin-top: 10px;
         }
         .contact-grid a {
             flex: 1 0 calc(50% - 10px);
@@ -95,87 +177,29 @@
             color: #1e1e2f;
             font-size: 13px;
             font-weight: 600;
-            transition: background 0.2s;
         }
-        .contact-grid a:active {
-            background: #e8e8f0;
-        }
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f5;
-            font-size: 15px;
-        }
-        .price-item:last-child {
-            border-bottom: none;
-        }
-        .price-item .price {
-            font-weight: 700;
-            color: #6C3CE1;
-        }
-        .payment-methods {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 10px;
-        }
-        .payment-item {
-            text-align: center;
-            flex: 1 0 80px;
-        }
-        .payment-item img {
-            width: 90px;
-            height: 90px;
-            object-fit: contain;
-            border-radius: 16px;
-            background: #f5f5fa;
-            padding: 10px;
-            border: 1px solid #eee;
-        }
-        .payment-item .label {
-            font-size: 13px;
-            margin-top: 6px;
-            color: #555;
-            font-weight: 600;
-        }
-        .extra-services {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 8px;
-        }
-        .extra-services span {
-            background: #f0edf9;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            color: #333;
-            font-weight: 500;
-        }
-        .footer {
-            text-align: center;
-            font-size: 13px;
-            color: #999;
-            margin-top: 24px;
-            padding-bottom: 10px;
-        }
-        .badge {
-            display: inline-block;
-            background: #6C3CE1;
+        .btn-wa {
+            display: block;
+            background: #25D366;
             color: #fff;
-            font-size: 11px;
-            padding: 2px 14px;
+            padding: 16px;
+            border: none;
             border-radius: 50px;
-            font-weight: 600;
-        }
-        .note {
-            font-size: 13px;
-            color: #888;
-            margin-top: 8px;
             text-align: center;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 16px 0;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        .hidden {
+            display: none;
+        }
+        .footer-text {
+            text-align: center;
+            font-size: 12px;
+            color: #ccc;
+            padding: 20px 0 10px;
         }
     </style>
 </head>
@@ -183,16 +207,53 @@
 
     <!-- ===== HEADER ===== -->
     <div class="header">
-        <h1>🧺 Zeevanna Digital</h1>
-        <p>Jasa Setrika, Cuci, &amp; Laundry Online</p>
-        <div class="sub">🚚 Jemput &amp; Antar Gratis • Pandeglang &amp; Sekitarnya</div>
+        <div class="greeting">👋 Selamat datang</div>
+        <div class="brand">🧺 Zeevanna Digital</div>
+        <div class="sub">Jasa Setrika & Laundry Online • Pandeglang</div>
     </div>
 
-    <!-- ===== PESAN SEKARANG ===== -->
-    <div class="card">
-        <h2>📋 Pesan Sekarang</h2>
-        <a href="https://wa.me/6283819023700?text=Halo%20Zeevanna%2C%20saya%20mau%20pesan%20layanan" class="btn-wa">💬 Pesan via WhatsApp</a>
-        <p style="font-size:14px;color:#888;text-align:center;margin:10px 0;">Atau hubungi langsung</p>
+    <!-- ===== SALDO / INFO ===== -->
+    <div class="saldo-card">
+        <div>
+            <div class="label">🚚 Gratis Antar</div>
+            <div style="font-weight:700;font-size:16px;">Area Pandeglang</div>
+        </div>
+        <div style="text-align:right;">
+            <div class="label">⭐ Rating</div>
+            <div class="value">4.9</div>
+        </div>
+    </div>
+
+    <!-- ===== MENU GRID ===== -->
+    <div class="menu-grid">
+        <a href="#pesan" class="menu-item">
+            <span class="icon">📋</span>
+            <span class="label">Pesan</span>
+        </a>
+        <a href="#harga" class="menu-item">
+            <span class="icon">💰</span>
+            <span class="label">Harga</span>
+        </a>
+        <a href="#layanan" class="menu-item">
+            <span class="icon">🧺</span>
+            <span class="label">Layanan</span>
+        </a>
+        <a href="#kontak" class="menu-item">
+            <span class="icon">📞</span>
+            <span class="label">Kontak</span>
+        </a>
+    </div>
+
+    <!-- ===== PROMO CARD ===== -->
+    <div class="promo-card">
+        <div class="title">🎉 Promo Spesial!</div>
+        <div class="desc">Gratis antar untuk 5 pcs pertama • Pandeglang kota</div>
+    </div>
+
+    <!-- ===== SECTION: PESAN ===== -->
+    <div id="pesan" class="section">
+        <div class="section-title">📋 Pesan Sekarang</div>
+        <a href="https://wa.me/6283819023700?text=Halo%20Zeevanna%2C%20saya%20mau%20pesan" class="btn-wa">💬 Chat via WhatsApp</a>
         <div class="contact-grid">
             <a href="tel:083819023700">📞 0838-1902-3700</a>
             <a href="https://wa.me/6283819023700">💬 WA 0838</a>
@@ -201,65 +262,116 @@
         </div>
     </div>
 
-    <!-- ===== DAFTAR HARGA ===== -->
-    <div class="card">
-        <h2>💰 Harga Layanan</h2>
-        <div class="price-item"><span>👕 Kemeja / Blouse</span> <span class="price">Rp 8.000</span></div>
-        <div class="price-item"><span>👖 Celana Panjang</span> <span class="price">Rp 10.000</span></div>
-        <div class="price-item"><span>👗 Gaun / Dress</span> <span class="price">Rp 15.000</span></div>
-        <div class="price-item"><span>🛏️ Sprei (per set)</span> <span class="price">Rp 25.000</span></div>
-        <div class="price-item"><span>🧥 Jas / Blazer</span> <span class="price">Rp 20.000</span></div>
-        <div class="note">*Minimal 5 pcs • Gratis antar area Pandeglang kota</div>
-    </div>
-
-    <!-- ===== METODE PEMBAYARAN ===== -->
-    <div class="card">
-        <h2>💳 Metode Bayar</h2>
-        <div class="payment-methods">
-            <div class="payment-item">
-                <!-- ⚠️ GANTI link gambar di bawah dengan QRIS milikmu (upload ke Postimages/ImgBB lalu ambil Direct Link) -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/QRIS_logo.svg/120px-QRIS_logo.svg.png" alt="QRIS" />
-                <div class="label">QRIS</div>
-            </div>
-            <div class="payment-item">
-                <div style="font-size:50px;line-height:1;">📱</div>
-                <div class="label">Pulsa / E-Wallet</div>
-            </div>
-            <div class="payment-item">
-                <div style="font-size:50px;line-height:1;">🏦</div>
-                <div class="label">Transfer Bank</div>
-            </div>
+    <!-- ===== SECTION: HARGA ===== -->
+    <div id="harga" class="section">
+        <div class="section-title">💰 Daftar Harga</div>
+        <div class="service-list">
+            <div class="service-item"><span class="name">👕 Kemeja / Blouse</span> <span class="price">Rp 8.000</span></div>
+            <div class="service-item"><span class="name">👖 Celana Panjang</span> <span class="price">Rp 10.000</span></div>
+            <div class="service-item"><span class="name">👗 Gaun / Dress</span> <span class="price">Rp 15.000</span></div>
+            <div class="service-item"><span class="name">🛏️ Sprei (set)</span> <span class="price">Rp 25.000</span></div>
+            <div class="service-item"><span class="name">🧥 Jas / Blazer</span> <span class="price">Rp 20.000</span></div>
         </div>
-        <p class="note">Scan QRIS atau tanyakan metode lain via WA</p>
+        <p style="font-size:13px;color:#999;text-align:center;margin-top:8px;">*Minimal 5 pcs • Gratis antar Pandeglang</p>
     </div>
 
-    <!-- ===== LAYANAN TAMBAHAN ===== -->
-    <div class="card">
-        <h2>🧺 Layanan Tambahan</h2>
-        <div class="extra-services">
-            <span>🧼 Cuci Kering</span>
-            <span>🧴 Cuci Basah</span>
-            <span>👔 Dry Clean</span>
-            <span>📦 Lipat Rapi</span>
-            <span>🧦 Setrika Kiloan</span>
-            <span>🛒 Laundry Harian</span>
-            <span>👕 Setrika Premium</span>
+    <!-- ===== SECTION: LAYANAN ===== -->
+    <div id="layanan" class="section">
+        <div class="section-title">🧺 Layanan Tambahan</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧼 Cuci Kering</span>
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧴 Cuci Basah</span>
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">👔 Dry Clean</span>
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">📦 Lipat Rapi</span>
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧦 Setrika Kiloan</span>
+            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🛒 Laundry Harian</span>
         </div>
-        <p class="note">Tanyakan harga khusus via WhatsApp.</p>
+        <p style="font-size:13px;color:#999;margin-top:10px;">Tanyakan harga khusus via WhatsApp.</p>
     </div>
 
-    <!-- ===== LOKASI ===== -->
-    <div class="card">
-        <h2>📍 Area Layanan</h2>
+    <!-- ===== SECTION: KONTAK & LOKASI ===== -->
+    <div id="kontak" class="section">
+        <div class="section-title">📍 Area Layanan</div>
         <p style="font-size:15px;color:#444;">Kota Pandeglang dan sekitarnya</p>
-        <p style="font-size:13px;color:#666;margin-top:2px;">Meliputi: Kecamatan Pandeglang, Labuan, Carita, Saketi, Cigeulis, dan sekitarnya.</p>
-        <p style="font-size:13px;color:#999;margin-top:6px;">🚚 Jemput &amp; antar gratis untuk area kota Pandeglang</p>
+        <p style="font-size:13px;color:#666;">Meliputi: Kecamatan Pandeglang, Labuan, Carita, Saketi, Cigeulis, dan sekitarnya.</p>
+        <p style="font-size:13px;color:#999;margin-top:6px;">🚚 Jemput & antar gratis untuk area kota Pandeglang</p>
+
+        <div class="section-title" style="margin-top:20px;">💳 Metode Pembayaran</div>
+        <div style="display:flex;justify-content:space-around;gap:10px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="text-align:center;">
+                <!-- Ganti src dengan QRIS-mu -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/QRIS_logo.svg/120px-QRIS_logo.svg.png" alt="QRIS" style="width:70px;height:70px;object-fit:contain;border-radius:12px;background:#f5f5fa;padding:8px;">
+                <div style="font-size:12px;margin-top:4px;">QRIS</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:40px;line-height:1;">📱</div>
+                <div style="font-size:12px;margin-top:4px;">Pulsa/E-Wallet</div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:40px;line-height:1;">🏦</div>
+                <div style="font-size:12px;margin-top:4px;">Transfer</div>
+            </div>
+        </div>
+        <p style="font-size:13px;color:#999;text-align:center;margin-top:8px;">Scan QRIS atau tanyakan metode lain via WA</p>
     </div>
 
     <!-- ===== FOOTER ===== -->
-    <div class="footer">
+    <div class="footer-text">
         &copy; 2026 Zeevanna Digital
     </div>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <div class="bottom-nav">
+        <a href="#" class="active">
+            <span class="icon">🏠</span>
+            Beranda
+        </a>
+        <a href="#pesan">
+            <span class="icon">📋</span>
+            Pesan
+        </a>
+        <a href="#harga">
+            <span class="icon">💰</span>
+            Harga
+        </a>
+        <a href="#kontak">
+            <span class="icon">📞</span>
+            Kontak
+        </a>
+    </div>
+
+    <script>
+        // Navigasi bottom aktif sesuai scroll
+        const navLinks = document.querySelectorAll('.bottom-nav a');
+        const sections = ['#pesan', '#harga', '#layanan', '#kontak'];
+
+        window.addEventListener('scroll', function() {
+            let current = '#';
+            for (let sec of sections) {
+                const el = document.querySelector(sec);
+                if (el) {
+                    const top = el.offsetTop - 120;
+                    if (window.scrollY >= top) {
+                        current = sec;
+                    }
+                }
+            }
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === current);
+            });
+        });
+
+        // Klik menu grid langsung scroll
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const target = this.getAttribute('href');
+                if (target && target.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
