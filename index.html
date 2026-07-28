@@ -192,14 +192,114 @@
             margin: 16px 0;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
-        .hidden {
-            display: none;
+        .qr-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-top: 12px;
+        }
+        .qr-container .merchant {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6C3CE1;
+        }
+        .qr-container .location {
+            font-size: 15px;
+            color: #555;
+            margin-top: 2px;
+        }
+        .qr-container .nmid {
+            font-size: 13px;
+            color: #999;
+            margin-top: 2px;
+            margin-bottom: 12px;
+        }
+        .qr-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f5f5fa;
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+        .qr-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .qr-buttons a {
+            background: #6C3CE1;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .qr-buttons a:active {
+            background: #5B2FC9;
+        }
+        .qr-buttons a.download {
+            background: #25D366;
+        }
+        .qr-buttons a.download:active {
+            background: #1ea952;
+        }
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .payment-item {
+            text-align: center;
+            flex: 1 0 80px;
+        }
+        .payment-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 16px;
+            background: #f5f5fa;
+            padding: 8px;
+            border: 1px solid #eee;
+        }
+        .payment-item .label {
+            font-size: 12px;
+            margin-top: 4px;
+            color: #555;
+            font-weight: 600;
+        }
+        .extra-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .extra-services span {
+            background: #f0edf9;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
         }
         .footer-text {
             text-align: center;
-            font-size: 12px;
-            color: #ccc;
+            font-size: 13px;
+            color: #999;
             padding: 20px 0 10px;
+        }
+        .footer-text .credit {
+            font-weight: 600;
+            color: #6C3CE1;
         }
     </style>
 </head>
@@ -278,13 +378,13 @@
     <!-- ===== SECTION: LAYANAN ===== -->
     <div id="layanan" class="section">
         <div class="section-title">🧺 Layanan Tambahan</div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧼 Cuci Kering</span>
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧴 Cuci Basah</span>
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">👔 Dry Clean</span>
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">📦 Lipat Rapi</span>
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🧦 Setrika Kiloan</span>
-            <span style="background:#f0edf9;padding:8px 16px;border-radius:50px;font-size:14px;">🛒 Laundry Harian</span>
+        <div class="extra-services">
+            <span>🧼 Cuci Kering</span>
+            <span>🧴 Cuci Basah</span>
+            <span>👔 Dry Clean</span>
+            <span>📦 Lipat Rapi</span>
+            <span>🧦 Setrika Kiloan</span>
+            <span>🛒 Laundry Harian</span>
         </div>
         <p style="font-size:13px;color:#999;margin-top:10px;">Tanyakan harga khusus via WhatsApp.</p>
     </div>
@@ -296,49 +396,32 @@
         <p style="font-size:13px;color:#666;">Meliputi: Kecamatan Pandeglang, Labuan, Carita, Saketi, Cigeulis, dan sekitarnya.</p>
         <p style="font-size:13px;color:#999;margin-top:6px;">🚚 Jemput & antar gratis untuk area kota Pandeglang</p>
 
-        <div class="section-title" style="margin-top:20px;">💳 Metode Pembayaran</div>
-        <div style="display:flex;justify-content:space-around;gap:10px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-            <div style="text-align:center;">
-                <!-- import React from 'react';
-import { View, Text, Image, StyleSheet, Button, Linking } from 'react-native';
+        <!-- ===== QRIS (DARI KODE REACT NATIVE) ===== -->
+        <div class="section-title" style="margin-top:20px;">💳 QRIS Pembayaran</div>
+        <div class="qr-container">
+            <div class="merchant">Zeevanna Digital & Kreatif</div>
+            <div class="location">KP. BATUR LOR</div>
+            <div class="nmid">NMID: ID1026535679355</div>
 
-export default function App() {
-  const qrisImage = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355";
+            <!-- QR Code dari API qrserver.com (sama dengan kode React Native) -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" alt="QRIS" />
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>QRIS Pembayaran</Text>
-      <Text style={styles.merchant}>Zeevanna Digital & Kreatif</Text>
-      <Text style={styles.location}>KP. BATUR LOR</Text>
-      <Text style={styles.nmid}>NMID: ID1026535679355</Text>
-
-      <Image source={{ uri: qrisImage }} style={styles.qr} />
-
-      <View style={styles.buttonContainer}>
-        <Button title="Bagikan" onPress={() => Linking.openURL(qrisImage)} />
-        <Button title="Download" onPress={() => Linking.openURL(qrisImage)} />
-      </View>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' },
-  title: { fontSize: 22, fontWeight: 'bold', marginBottom: 10 },
-  merchant: { fontSize: 18, marginBottom: 5 },
-  location: { fontSize: 16, marginBottom: 5 },
-  nmid: { fontSize: 14, marginBottom: 20 },
-  qr: { width: 250, height: 250, marginBottom: 20 },
-  buttonContainer: { flexDirection: 'row', gap: 10 }
-});
+            <div class="qr-buttons">
+                <a href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" target="_blank">📤 Bagikan</a>
+                <a href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" download class="download">⬇️ Download</a>
             </div>
-            <div style="text-align:center;">
+        </div>
+
+        <!-- ===== METODE PEMBAYARAN LAIN ===== -->
+        <div class="section-title" style="margin-top:20px;">💳 Metode Lainnya</div>
+        <div class="payment-methods">
+            <div class="payment-item">
                 <div style="font-size:40px;line-height:1;">📱</div>
-                <div style="font-size:12px;margin-top:4px;">Pulsa/E-Wallet</div>
+                <div class="label">Pulsa / E-Wallet</div>
             </div>
-            <div style="text-align:center;">
+            <div class="payment-item">
                 <div style="font-size:40px;line-height:1;">🏦</div>
-                <div style="font-size:12px;margin-top:4px;">Transfer</div>
+                <div class="label">Transfer Bank</div>
             </div>
         </div>
         <p style="font-size:13px;color:#999;text-align:center;margin-top:8px;">Scan QRIS atau tanyakan metode lain via WA</p>
@@ -346,7 +429,7 @@ const styles = StyleSheet.create({
 
     <!-- ===== FOOTER ===== -->
     <div class="footer-text">
-        &copy; 2026 deskawps
+        &copy; 2026 <span class="credit">deskawps</span>
     </div>
 
     <!-- ===== BOTTOM NAV ===== -->
