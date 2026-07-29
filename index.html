@@ -13,59 +13,105 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #f0f0f5;
+            background: #f5f5f8;
             color: #1e1e2f;
             padding-bottom: 80px;
         }
         .header {
             background: linear-gradient(135deg, #6C3CE1, #8B5CF6);
-            padding: 24px 20px 40px;
-            border-radius: 0 0 30px 30px;
+            padding: 20px 18px 30px;
+            border-radius: 0 0 28px 28px;
+            color: #fff;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-top .brand {
+            font-size: 20px;
+            font-weight: 800;
+        }
+        .header-top .notif {
+            font-size: 22px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 50px;
+            text-decoration: none;
             color: #fff;
         }
         .header .greeting {
             font-size: 14px;
             opacity: 0.9;
-        }
-        .header .brand {
-            font-size: 22px;
-            font-weight: 800;
-            margin-top: 2px;
+            margin-top: 8px;
         }
         .header .sub {
             font-size: 13px;
             opacity: 0.8;
-            margin-top: 4px;
         }
         .saldo-card {
             background: #fff;
-            margin: -20px 16px 20px;
-            border-radius: 20px;
-            padding: 16px 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin: -16px 16px 16px;
+            border-radius: 18px;
+            padding: 14px 18px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .saldo-card .label {
-            font-size: 14px;
+            font-size: 13px;
             color: #888;
         }
         .saldo-card .value {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 800;
             color: #6C3CE1;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 16px 16px;
+        }
+        .status-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px 6px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-decoration: none;
+            color: #1e1e2f;
+        }
+        .status-item .icon {
+            font-size: 24px;
+            display: block;
+        }
+        .status-item .label {
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .status-item .count {
+            font-size: 10px;
+            color: #6C3CE1;
+            font-weight: 700;
+            background: #f0edf9;
+            padding: 0 8px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 2px;
         }
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            padding: 0 16px 20px;
+            padding: 0 16px 16px;
         }
         .menu-item {
             background: #fff;
             border-radius: 16px;
-            padding: 16px 8px;
+            padding: 14px 6px;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             text-decoration: none;
@@ -76,67 +122,31 @@
             transform: scale(0.95);
         }
         .menu-item .icon {
-            font-size: 28px;
+            font-size: 26px;
             display: block;
-            margin-bottom: 4px;
         }
         .menu-item .label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-        }
-        .promo-card {
-            background: #fff;
-            margin: 0 16px 20px;
-            border-radius: 20px;
-            padding: 16px 20px;
-            border-left: 6px solid #6C3CE1;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-        }
-        .promo-card .title {
-            font-weight: 700;
-            font-size: 16px;
-        }
-        .promo-card .desc {
-            font-size: 14px;
-            color: #666;
             margin-top: 4px;
-        }
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0 12px;
-            border-top: 1px solid #eee;
-            box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
-        }
-        .bottom-nav a {
-            text-decoration: none;
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-            font-weight: 600;
-            flex: 1;
-        }
-        .bottom-nav a.active {
-            color: #6C3CE1;
-        }
-        .bottom-nav a .icon {
-            font-size: 22px;
-            display: block;
-            margin-bottom: 2px;
         }
         .section {
             padding: 0 16px 20px;
         }
         .section-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #1e1e2f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title a {
+            font-size: 13px;
+            color: #6C3CE1;
+            text-decoration: none;
+            font-weight: 600;
         }
         .service-list {
             background: #fff;
@@ -155,28 +165,12 @@
         }
         .service-item .name {
             font-weight: 500;
+            font-size: 14px;
         }
         .service-item .price {
             font-weight: 700;
             color: #6C3CE1;
-        }
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .contact-grid a {
-            flex: 1 0 calc(50% - 10px);
-            background: #f8f8fc;
-            border: 1px solid #e8e8f0;
-            border-radius: 14px;
-            padding: 12px 8px;
-            text-align: center;
-            text-decoration: none;
-            color: #1e1e2f;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 14px;
         }
         .btn-wa {
             display: block;
@@ -186,11 +180,29 @@
             border: none;
             border-radius: 50px;
             text-align: center;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             text-decoration: none;
-            margin: 16px 0;
+            margin: 12px 0;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .contact-grid a {
+            flex: 1 0 calc(50% - 10px);
+            background: #fff;
+            border: 1px solid #e8e8f0;
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #1e1e2f;
+            font-size: 13px;
+            font-weight: 600;
         }
         .qr-container {
             background: #fff;
@@ -201,105 +213,144 @@
             margin-top: 12px;
         }
         .qr-container .merchant {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             color: #6C3CE1;
         }
         .qr-container .location {
-            font-size: 15px;
+            font-size: 14px;
             color: #555;
             margin-top: 2px;
         }
         .qr-container .nmid {
-            font-size: 13px;
+            font-size: 12px;
             color: #999;
             margin-top: 2px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .qr-container img {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             object-fit: contain;
             border-radius: 12px;
-            background: #f5f5fa;
-            padding: 10px;
-            border: 1px solid #eee;
-        }
-        .qr-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 12px;
-        }
-        .qr-buttons a {
-            background: #6C3CE1;
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        .qr-buttons a:active {
-            background: #5B2FC9;
-        }
-        .qr-buttons a.download {
-            background: #25D366;
-        }
-        .qr-buttons a.download:active {
-            background: #1ea952;
-        }
-        .payment-methods {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-top: 10px;
-        }
-        .payment-item {
-            text-align: center;
-            flex: 1 0 80px;
-        }
-        .payment-item img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            border-radius: 16px;
             background: #f5f5fa;
             padding: 8px;
             border: 1px solid #eee;
         }
-        .payment-item .label {
-            font-size: 12px;
-            margin-top: 4px;
-            color: #555;
+        .qr-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .qr-buttons a {
+            background: #6C3CE1;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
+            font-size: 13px;
+        }
+        .qr-buttons a.download {
+            background: #25D366;
         }
         .extra-services {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 8px;
+            gap: 8px;
+            margin-top: 6px;
         }
         .extra-services span {
             background: #f0edf9;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 50px;
-            font-size: 14px;
+            font-size: 13px;
             color: #333;
             font-weight: 500;
         }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 10px;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+        }
+        .bottom-nav a {
+            text-decoration: none;
+            text-align: center;
+            color: #999;
+            font-size: 11px;
+            font-weight: 600;
+            flex: 1;
+        }
+        .bottom-nav a.active {
+            color: #6C3CE1;
+        }
+        .bottom-nav a .icon {
+            font-size: 22px;
+            display: block;
+            margin-bottom: 1px;
+        }
         .footer-text {
             text-align: center;
-            font-size: 13px;
-            color: #999;
-            padding: 20px 0 10px;
+            font-size: 12px;
+            color: #ccc;
+            padding: 16px 0 6px;
         }
         .footer-text .credit {
             font-weight: 600;
             color: #6C3CE1;
+        }
+        .badge {
+            background: #ff4d4d;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 8px;
+            border-radius: 50px;
+            margin-left: 4px;
+        }
+        .order-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-card .info {
+            font-size: 14px;
+        }
+        .order-card .info .name {
+            font-weight: 600;
+        }
+        .order-card .status {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+        .order-card .status.done {
+            background: #d4edda;
+            color: #155724;
+        }
+        .order-card .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .order-card .status.process {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -307,8 +358,11 @@
 
     <!-- ===== HEADER ===== -->
     <div class="header">
-        <div class="greeting">👋 Selamat datang</div>
-        <div class="brand">🧺 Zeevanna Digital</div>
+        <div class="header-top">
+            <div class="brand">🧺 Zeevanna Digital</div>
+            <a href="#" class="notif">🔔</a>
+        </div>
+        <div class="greeting">👋 Hai, Selamat datang!</div>
         <div class="sub">Jasa Setrika & Laundry Online • Pandeglang</div>
     </div>
 
@@ -316,12 +370,36 @@
     <div class="saldo-card">
         <div>
             <div class="label">🚚 Gratis Antar</div>
-            <div style="font-weight:700;font-size:16px;">Area Pandeglang</div>
+            <div style="font-weight:700;font-size:15px;">Area Pandeglang</div>
         </div>
         <div style="text-align:right;">
             <div class="label">⭐ Rating</div>
             <div class="value">4.9</div>
         </div>
+    </div>
+
+    <!-- ===== STATUS PESANAN (Seperti TikTok/Shopee) ===== -->
+    <div class="status-grid">
+        <a href="#" class="status-item">
+            <span class="icon">📦</span>
+            <span class="label">Semua</span>
+            <span class="count">12</span>
+        </a>
+        <a href="#" class="status-item">
+            <span class="icon">⏳</span>
+            <span class="label">Diproses</span>
+            <span class="count">3</span>
+        </a>
+        <a href="#" class="status-item">
+            <span class="icon">🚚</span>
+            <span class="label">Diantar</span>
+            <span class="count">2</span>
+        </a>
+        <a href="#" class="status-item">
+            <span class="icon">✅</span>
+            <span class="label">Selesai</span>
+            <span class="count">7</span>
+        </a>
     </div>
 
     <!-- ===== MENU GRID ===== -->
@@ -344,21 +422,16 @@
         </a>
     </div>
 
-    <!-- ===== PROMO CARD ===== -->
-    <div class="promo-card">
-        <div class="title">🎉 Promo Spesial!</div>
-        <div class="desc">Gratis antar untuk 5 pcs pertama • Pandeglang kota</div>
-    </div>
-
     <!-- ===== SECTION: PESAN ===== -->
     <div id="pesan" class="section">
         <div class="section-title">📋 Pesan Sekarang</div>
         <a href="https://wa.me/6283819023700?text=Halo%20Zeevanna%2C%20saya%20mau%20pesan" class="btn-wa">💬 Chat via WhatsApp</a>
+        <p style="font-size:13px;color:#888;text-align:center;margin:-6px 0 10px;">Respons cepat • 08.00 - 21.00</p>
         <div class="contact-grid">
+            <a href="tel:083181500947">📞 0831-8150-0947</a>
+            <a href="https://wa.me/6283181500947">💬 WA 0831</a>
             <a href="tel:083819023700">📞 0838-1902-3700</a>
             <a href="https://wa.me/6283819023700">💬 WA 0838</a>
-            <a href="tel:081285526012">📞 0812-8552-6012</a>
-            <a href="https://wa.me/6281285526012">💬 WA 0812</a>
         </div>
     </div>
 
@@ -372,7 +445,7 @@
             <div class="service-item"><span class="name">🛏️ Sprei (set)</span> <span class="price">Rp 25.000</span></div>
             <div class="service-item"><span class="name">🧥 Jas / Blazer</span> <span class="price">Rp 20.000</span></div>
         </div>
-        <p style="font-size:13px;color:#999;text-align:center;margin-top:8px;">*Minimal 5 pcs • Gratis antar Pandeglang</p>
+        <p style="font-size:12px;color:#999;text-align:center;margin-top:8px;">*Minimal 5 pcs • Gratis antar Pandeglang</p>
     </div>
 
     <!-- ===== SECTION: LAYANAN ===== -->
@@ -396,35 +469,32 @@
         <p style="font-size:13px;color:#666;">Meliputi: Kecamatan Pandeglang, Labuan, Carita, Saketi, Cigeulis, dan sekitarnya.</p>
         <p style="font-size:13px;color:#999;margin-top:6px;">🚚 Jemput & antar gratis untuk area kota Pandeglang</p>
 
-        <!-- ===== QRIS (DARI KODE REACT NATIVE) ===== -->
-        <div class="section-title" style="margin-top:20px;">💳 QRIS Pembayaran</div>
+        <!-- ===== QRIS ===== -->
+        <div class="section-title" style="margin-top:18px;">💳 QRIS Pembayaran</div>
         <div class="qr-container">
             <div class="merchant">Zeevanna Digital & Kreatif</div>
             <div class="location">KP. BATUR LOR</div>
             <div class="nmid">NMID: ID1026535679355</div>
-
-            <!-- QR Code dari API qrserver.com (sama dengan kode React Native) -->
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" alt="QRIS" />
-
             <div class="qr-buttons">
                 <a href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" target="_blank">📤 Bagikan</a>
                 <a href="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=ID1026535679355" download class="download">⬇️ Download</a>
             </div>
         </div>
 
-        <!-- ===== METODE PEMBAYARAN LAIN ===== -->
-        <div class="section-title" style="margin-top:20px;">💳 Metode Lainnya</div>
-        <div class="payment-methods">
-            <div class="payment-item">
-                <div style="font-size:40px;line-height:1;">📱</div>
-                <div class="label">Pulsa / E-Wallet</div>
+        <!-- ===== METODE LAIN ===== -->
+        <div class="section-title" style="margin-top:18px;">💳 Metode Lainnya</div>
+        <div style="display:flex;justify-content:space-around;gap:10px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+            <div style="text-align:center;">
+                <div style="font-size:36px;line-height:1;">📱</div>
+                <div style="font-size:12px;margin-top:4px;font-weight:600;">Pulsa/E-Wallet</div>
             </div>
-            <div class="payment-item">
-                <div style="font-size:40px;line-height:1;">🏦</div>
-                <div class="label">Transfer Bank</div>
+            <div style="text-align:center;">
+                <div style="font-size:36px;line-height:1;">🏦</div>
+                <div style="font-size:12px;margin-top:4px;font-weight:600;">Transfer Bank</div>
             </div>
         </div>
-        <p style="font-size:13px;color:#999;text-align:center;margin-top:8px;">Scan QRIS atau tanyakan metode lain via WA</p>
+        <p style="font-size:12px;color:#999;text-align:center;margin-top:8px;">Scan QRIS atau tanyakan metode lain via WA</p>
     </div>
 
     <!-- ===== FOOTER ===== -->
@@ -453,7 +523,7 @@
     </div>
 
     <script>
-        // Navigasi bottom aktif sesuai scroll
+        // Navigasi bottom aktif
         const navLinks = document.querySelectorAll('.bottom-nav a');
         const sections = ['#pesan', '#harga', '#layanan', '#kontak'];
 
@@ -473,7 +543,7 @@
             });
         });
 
-        // Klik menu grid langsung scroll
+        // Menu grid scroll smooth
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 const target = this.getAttribute('href');
