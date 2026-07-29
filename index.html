@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#6C3CE1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Zeevanna Digital - Pandeglang</title>
-
-    <!-- ===== Leaflet.js (Peta) ===== -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-    </script>
-
     <style>
         /* ============================================================
                RESET & BASE
@@ -22,19 +15,37 @@
             padding: 0;
             box-sizing: border-box;
         }
+        :root {
+            --primary: #6C3CE1;
+            --primary-light: #8B5CF6;
+            --primary-dark: #5B2FC9;
+            --gradient: linear-gradient(135deg, #6C3CE1, #8B5CF6);
+            --bg: #f0f0f5;
+            --card: #ffffff;
+            --text: #1e1e2f;
+            --text-secondary: #6b7280;
+            --radius: 16px;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #f0f0f5;
-            color: #1e1e2f;
-            padding-bottom: 80px;
-            overflow-x: hidden;
+            background: var(--bg);
+            color: var(--text);
+            padding-bottom: calc(70px + var(--safe-bottom));
+            min-height: 100vh;
+            min-height: 100dvh;
         }
+
         /* ============================================================
                HEADER
                ============================================================ */
         .header {
-            background: linear-gradient(135deg, #6C3CE1, #8B5CF6);
-            padding: 18px 16px 28px;
+            background: var(--gradient);
+            padding: 20px 16px 30px;
             border-radius: 0 0 28px 28px;
             color: #fff;
             position: relative;
@@ -43,11 +54,11 @@
         .header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
+            top: -40%;
+            right: -10%;
             width: 200px;
             height: 200px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 50%;
         }
         .header-top {
@@ -65,11 +76,11 @@
             gap: 8px;
         }
         .header-top .brand .badge-live {
-            font-size: 10px;
-            background: #ff4d4d;
-            padding: 2px 8px;
+            font-size: 9px;
+            background: #22c55e;
+            padding: 2px 10px;
             border-radius: 50px;
-            animation: pulse 1.5s infinite;
+            animation: pulse 2s infinite;
         }
         @keyframes pulse {
             0%,
@@ -77,68 +88,77 @@
                 opacity: 1;
             }
             50% {
-                opacity: 0.3;
+                opacity: 0.4;
             }
         }
         .header-top .notif {
             font-size: 20px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 50px;
             text-decoration: none;
             color: #fff;
             position: relative;
             z-index: 1;
+            backdrop-filter: blur(4px);
         }
         .header-top .notif .dot {
             position: absolute;
-            top: 2px;
+            top: 4px;
             right: 6px;
             width: 8px;
             height: 8px;
-            background: #ff4d4d;
+            background: #ef4444;
             border-radius: 50%;
             border: 2px solid #6C3CE1;
             animation: pulse 1.5s infinite;
         }
         .header .greeting {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 6px;
+            font-size: 15px;
+            opacity: 0.95;
+            margin-top: 8px;
             position: relative;
             z-index: 1;
+            font-weight: 500;
         }
         .header .sub {
             font-size: 13px;
             opacity: 0.8;
             position: relative;
             z-index: 1;
+            margin-top: 2px;
         }
         .header .role-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 2px 14px;
+            padding: 2px 16px;
             border-radius: 50px;
             font-size: 11px;
             font-weight: 600;
             margin-top: 6px;
             position: relative;
             z-index: 1;
+            backdrop-filter: blur(4px);
         }
         .header .location-info {
             font-size: 12px;
-            opacity: 0.8;
-            margin-top: 4px;
+            opacity: 0.85;
+            margin-top: 6px;
             position: relative;
             z-index: 1;
             display: flex;
             align-items: center;
             gap: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 4px 14px;
+            border-radius: 50px;
+            display: inline-flex;
+            backdrop-filter: blur(4px);
         }
         .header .location-info .dot-loc {
             width: 8px;
             height: 8px;
-            background: #4ade80;
+            background: #22c55e;
             border-radius: 50%;
             display: inline-block;
             animation: pulse 2s infinite;
@@ -148,39 +168,79 @@
                SALDO CARD
                ============================================================ */
         .saldo-card {
-            background: #fff;
+            background: var(--card);
             margin: -16px 16px 16px;
-            border-radius: 18px;
+            border-radius: var(--radius);
             padding: 16px 18px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            box-shadow: var(--shadow);
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             position: relative;
             z-index: 2;
-            border: 1px solid rgba(108, 60, 225, 0.08);
+            border: 1px solid rgba(108, 60, 225, 0.06);
         }
         .saldo-card .item {
             text-align: center;
             flex: 1;
-            min-width: 60px;
+            min-width: 55px;
         }
         .saldo-card .label {
-            font-size: 11px;
-            color: #888;
+            font-size: 10px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
         .saldo-card .value {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 800;
-            color: #6C3CE1;
+            color: var(--primary);
+            margin-top: 2px;
         }
         .saldo-card .value.green {
-            color: #25D366;
+            color: #22c55e;
         }
         .saldo-card .value.gold {
-            color: #F59E0B;
+            color: #f59e0b;
+        }
+
+        /* ============================================================
+               ROLE SWITCH
+               ============================================================ */
+        .role-switch {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 14px;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scrollbar-width: none;
+        }
+        .role-switch::-webkit-scrollbar {
+            display: none;
+        }
+        .role-btn {
+            padding: 6px 18px;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .role-btn.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(108, 60, 225, 0.3);
+        }
+        .role-btn:active {
+            transform: scale(0.95);
         }
 
         /* ============================================================
@@ -193,39 +253,36 @@
             padding: 0 16px 16px;
         }
         .status-item {
-            background: #fff;
+            background: var(--card);
             border-radius: 14px;
             padding: 12px 6px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow);
             text-decoration: none;
-            color: #1e1e2f;
-            transition: transform 0.2s;
-            border: 1px solid transparent;
+            color: var(--text);
+            transition: all 0.2s;
+            border: 2px solid transparent;
         }
         .status-item:active {
             transform: scale(0.95);
         }
         .status-item.active {
-            border-color: #6C3CE1;
+            border-color: var(--primary);
         }
         .status-item .icon {
             font-size: 24px;
             display: block;
         }
         .status-item .label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             margin-top: 4px;
+            color: #6b7280;
         }
         .status-item .count {
-            font-size: 10px;
-            color: #6C3CE1;
+            font-size: 13px;
             font-weight: 700;
-            background: #f0edf9;
-            padding: 0 8px;
-            border-radius: 50px;
-            display: inline-block;
+            color: var(--primary);
             margin-top: 2px;
         }
 
@@ -239,17 +296,19 @@
             padding: 0 16px 16px;
         }
         .menu-item {
-            background: #fff;
-            border-radius: 16px;
+            background: var(--card);
+            border-radius: var(--radius);
             padding: 14px 6px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow);
             text-decoration: none;
-            color: #1e1e2f;
-            transition: transform 0.2s;
+            color: var(--text);
+            transition: all 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
         .menu-item:active {
             transform: scale(0.95);
+            background: #f8f8fc;
         }
         .menu-item .icon {
             font-size: 26px;
@@ -259,6 +318,7 @@
             font-size: 11px;
             font-weight: 600;
             margin-top: 4px;
+            color: #6b7280;
         }
 
         /* ============================================================
@@ -271,94 +331,88 @@
             font-size: 17px;
             font-weight: 700;
             margin-bottom: 10px;
-            color: #1e1e2f;
+            color: var(--text);
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .section-title a {
-            font-size: 13px;
-            color: #6C3CE1;
-            text-decoration: none;
-            font-weight: 600;
         }
         .section-title .badge-count {
-            background: #6C3CE1;
+            background: var(--primary);
             color: #fff;
             font-size: 11px;
-            padding: 0 10px;
+            padding: 2px 14px;
             border-radius: 50px;
+            font-weight: 600;
         }
 
         /* ============================================================
-               MAP (PETA)
+               ORDER CARD
                ============================================================ */
-        #map {
-            height: 280px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            margin-bottom: 12px;
-            z-index: 1;
-            position: relative;
-            overflow: hidden;
-        }
-        .map-container {
-            position: relative;
-        }
-        .map-container .map-overlay {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 11px;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .map-container .map-overlay .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-        }
-
-        /* ============================================================
-               SERVICE LIST
-               ============================================================ */
-        .service-list {
-            background: #fff;
-            border-radius: 16px;
-            padding: 12px 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-        .service-item {
+        .order-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f5;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.2s;
         }
-        .service-item:last-child {
-            border-bottom: none;
+        .order-card:active {
+            transform: scale(0.98);
         }
-        .service-item .name {
-            font-weight: 500;
+        .order-card .info {
             font-size: 14px;
+            flex: 2;
+            min-width: 120px;
         }
-        .service-item .price {
-            font-weight: 700;
-            color: #6C3CE1;
-            font-size: 14px;
-        }
-        .service-item .point {
-            font-size: 11px;
-            color: #F59E0B;
+        .order-card .info .name {
             font-weight: 600;
+        }
+        .order-card .info .desa {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .order-card .info .point-earn {
+            font-size: 11px;
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .order-card .info .distance {
+            font-size: 11px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .order-card .status {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 50px;
+        }
+        .order-card .status.done {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .order-card .status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .order-card .status.process {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .order-card .status.deliver {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .order-card .earning {
+            font-weight: 700;
+            color: #22c55e;
+            font-size: 14px;
         }
 
         /* ============================================================
@@ -376,8 +430,8 @@
             font-weight: 700;
             text-decoration: none;
             margin: 12px 0;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            transition: transform 0.2s;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+            transition: all 0.2s;
         }
         .btn-wa:active {
             transform: scale(0.97);
@@ -394,274 +448,216 @@
         }
         .contact-grid a {
             flex: 1 0 calc(50% - 10px);
-            background: #fff;
-            border: 1px solid #e8e8f0;
+            background: var(--card);
+            border: 1px solid #e5e7eb;
             border-radius: 14px;
             padding: 12px 8px;
             text-align: center;
             text-decoration: none;
-            color: #1e1e2f;
+            color: var(--text);
             font-size: 13px;
             font-weight: 600;
+            transition: all 0.2s;
         }
-
-        /* ============================================================
-               QRIS
-               ============================================================ */
-        .qr-container {
-            background: #fff;
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            margin-top: 12px;
-        }
-        .qr-container .merchant {
-            font-size: 16px;
-            font-weight: 700;
-            color: #6C3CE1;
-        }
-        .qr-container .location {
-            font-size: 14px;
-            color: #555;
-            margin-top: 2px;
-        }
-        .qr-container .nmid {
-            font-size: 12px;
-            color: #999;
-            margin-top: 2px;
-            margin-bottom: 10px;
-        }
-        .qr-container img {
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: #f5f5fa;
-            padding: 8px;
-            border: 1px solid #eee;
-        }
-        .qr-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .qr-buttons a {
-            background: #6C3CE1;
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-        }
-        .qr-buttons a.download {
-            background: #25D366;
-        }
-
-        /* ============================================================
-               EXTRA SERVICES
-               ============================================================ */
-        .extra-services {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
-        }
-        .extra-services span {
-            background: #f0edf9;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 13px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        /* ============================================================
-               ORDER CARD
-               ============================================================ */
-        .order-card {
-            background: #fff;
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            border-left: 4px solid #6C3CE1;
-            transition: transform 0.2s;
-        }
-        .order-card:active {
-            transform: scale(0.98);
-        }
-        .order-card .info {
-            font-size: 14px;
-            flex: 2;
-        }
-        .order-card .info .name {
-            font-weight: 600;
-        }
-        .order-card .info .desa {
-            font-size: 12px;
-            color: #888;
-        }
-        .order-card .info .point-earn {
-            font-size: 11px;
-            color: #F59E0B;
-            font-weight: 600;
-        }
-        .order-card .info .distance {
-            font-size: 11px;
-            color: #6C3CE1;
-            font-weight: 600;
-        }
-        .order-card .status {
-            font-size: 12px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 50px;
-        }
-        .order-card .status.done {
-            background: #d4edda;
-            color: #155724;
-        }
-        .order-card .status.pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-        .order-card .status.process {
-            background: #cce5ff;
-            color: #004085;
-        }
-        .order-card .status.deliver {
-            background: #d4edda;
-            color: #155724;
-        }
-        .order-card .earning {
-            font-weight: 700;
-            color: #25D366;
-            font-size: 14px;
-        }
-
-        /* ============================================================
-               EARNING CARD
-               ============================================================ */
-        .earning-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            margin-top: 10px;
-        }
-        .earning-card .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f5;
-        }
-        .earning-card .row:last-child {
-            border-bottom: none;
-        }
-        .earning-card .label {
-            font-size: 14px;
-            color: #555;
-        }
-        .earning-card .value {
-            font-weight: 700;
-            font-size: 14px;
-        }
-        .earning-card .value.green {
-            color: #25D366;
-        }
-        .earning-card .value.gold {
-            color: #F59E0B;
-        }
-        .progress-bar {
-            height: 8px;
-            background: #f0f0f5;
-            border-radius: 10px;
-            margin: 6px 0 10px;
-            overflow: hidden;
-        }
-        .progress-bar .fill {
-            height: 100%;
-            background: linear-gradient(90deg, #6C3CE1, #8B5CF6);
-            border-radius: 10px;
-            transition: width 0.5s ease;
+        .contact-grid a:active {
+            background: #f8f8fc;
         }
 
         /* ============================================================
                REGISTER FORM
                ============================================================ */
         .register-form {
-            background: #fff;
-            border-radius: 16px;
+            background: var(--card);
+            border-radius: var(--radius);
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow);
         }
         .register-form input,
         .register-form select {
             width: 100%;
-            padding: 12px 14px;
-            border: 2px solid #e8e8f0;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
             border-radius: 12px;
             font-size: 14px;
             margin-bottom: 10px;
             font-family: inherit;
-            background: #f8f8fc;
-            transition: border 0.2s;
+            background: #f8fafc;
+            transition: all 0.2s;
+            -webkit-appearance: none;
         }
         .register-form input:focus,
         .register-form select:focus {
-            border-color: #6C3CE1;
+            border-color: var(--primary);
             outline: none;
             background: #fff;
+            box-shadow: 0 0 0 4px rgba(108, 60, 225, 0.08);
         }
         .register-form .btn-register {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #6C3CE1, #8B5CF6);
+            background: var(--gradient);
             color: #fff;
             border: none;
             border-radius: 50px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(108, 60, 225, 0.3);
         }
         .register-form .btn-register:active {
             transform: scale(0.97);
         }
         .register-form .geo-status {
             font-size: 12px;
-            color: #4ade80;
+            color: #22c55e;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            background: #f0fdf4;
+            padding: 8px;
+            border-radius: 12px;
         }
 
         /* ============================================================
-               DESA GRID
+               EARNING CARD
                ============================================================ */
-        .desa-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+        .earning-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            margin-top: 10px;
         }
-        .desa-card {
-            background: #fff;
-            border-radius: 14px;
-            padding: 12px 10px;
+        .earning-card .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .earning-card .row:last-child {
+            border-bottom: none;
+        }
+        .earning-card .label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        .earning-card .value {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .earning-card .value.green {
+            color: #22c55e;
+        }
+        .earning-card .value.gold {
+            color: #f59e0b;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            margin: 8px 0 10px;
+            overflow: hidden;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+
+        /* ============================================================
+               QRIS
+               ============================================================ */
+        .qr-container {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            transition: transform 0.2s;
-            cursor: pointer;
+            box-shadow: var(--shadow);
+            margin-top: 12px;
         }
-        
+        .qr-container .merchant {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .qr-container .location {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        .qr-container .nmid {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 2px;
+            margin-bottom: 12px;
+        }
+        .qr-container img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f8fafc;
+            padding: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .qr-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .qr-buttons a {
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .qr-buttons a:active {
+            transform: scale(0.95);
+        }
+        .qr-buttons a.download {
+            background: #25D366;
+        }
+
+        /* ============================================================
+               BOTTOM NAV
+               ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 calc(8px + var(--safe-bottom));
+            border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        .bottom-nav a {
+            text-decoration: none;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 10px;
+            font-weight: 600;
+            flex: 1;
+            transition: all 0.2s;
+            padding: 4px 0;
+        }
+        .bottom-nav a.active {
+            color: var(--primary);
+        }
+        .bottom-nav a .icon {
+       
