@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <meta name="theme-color" content="#6C3CE1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Zeevanna Digital - Pandeglang</title>
+
+    <!-- ===== Leaflet.js (Peta) ===== -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
     <style>
-        /* ===== RESET & BASE ===== */
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -17,18 +27,35 @@
             background: #f0f0f5;
             color: #1e1e2f;
             padding-bottom: 80px;
+            overflow-x: hidden;
         }
-        /* ===== HEADER ===== */
+        /* ============================================================
+               HEADER
+               ============================================================ */
         .header {
             background: linear-gradient(135deg, #6C3CE1, #8B5CF6);
             padding: 18px 16px 28px;
             border-radius: 0 0 28px 28px;
             color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
         }
         .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
         .header-top .brand {
             font-size: 20px;
@@ -37,14 +64,31 @@
             align-items: center;
             gap: 8px;
         }
+        .header-top .brand .badge-live {
+            font-size: 10px;
+            background: #ff4d4d;
+            padding: 2px 8px;
+            border-radius: 50px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
         .header-top .notif {
             font-size: 20px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 6px 12px;
             border-radius: 50px;
             text-decoration: none;
             color: #fff;
             position: relative;
+            z-index: 1;
         }
         .header-top .notif .dot {
             position: absolute;
@@ -55,38 +99,68 @@
             background: #ff4d4d;
             border-radius: 50%;
             border: 2px solid #6C3CE1;
+            animation: pulse 1.5s infinite;
         }
         .header .greeting {
             font-size: 14px;
             opacity: 0.9;
             margin-top: 6px;
+            position: relative;
+            z-index: 1;
         }
         .header .sub {
             font-size: 13px;
             opacity: 0.8;
+            position: relative;
+            z-index: 1;
         }
         .header .role-badge {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 2px 14px;
             border-radius: 50px;
             font-size: 11px;
             font-weight: 600;
             margin-top: 6px;
+            position: relative;
+            z-index: 1;
+        }
+        .header .location-info {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header .location-info .dot-loc {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
         }
 
-        /* ===== SALDO CARD (Gojek Style) ===== */
+        /* ============================================================
+               SALDO CARD
+               ============================================================ */
         .saldo-card {
             background: #fff;
             margin: -16px 16px 16px;
             border-radius: 18px;
             padding: 16px 18px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(108, 60, 225, 0.08);
         }
         .saldo-card .item {
             text-align: center;
@@ -109,7 +183,9 @@
             color: #F59E0B;
         }
 
-        /* ===== STATUS GRID (seperti TikTok/Shopee) ===== */
+        /* ============================================================
+               STATUS GRID
+               ============================================================ */
         .status-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -121,13 +197,17 @@
             border-radius: 14px;
             padding: 12px 6px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             text-decoration: none;
             color: #1e1e2f;
             transition: transform 0.2s;
+            border: 1px solid transparent;
         }
         .status-item:active {
             transform: scale(0.95);
+        }
+        .status-item.active {
+            border-color: #6C3CE1;
         }
         .status-item .icon {
             font-size: 24px;
@@ -149,7 +229,9 @@
             margin-top: 2px;
         }
 
-        /* ===== MENU GRID ===== */
+        /* ============================================================
+               MENU GRID
+               ============================================================ */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -161,7 +243,7 @@
             border-radius: 16px;
             padding: 14px 6px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             text-decoration: none;
             color: #1e1e2f;
             transition: transform 0.2s;
@@ -179,7 +261,9 @@
             margin-top: 4px;
         }
 
-        /* ===== SECTION ===== */
+        /* ============================================================
+               SECTION
+               ============================================================ */
         .section {
             padding: 0 16px 20px;
         }
@@ -206,12 +290,52 @@
             border-radius: 50px;
         }
 
-        /* ===== SERVICE LIST ===== */
+        /* ============================================================
+               MAP (PETA)
+               ============================================================ */
+        #map {
+            height: 280px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 12px;
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-container {
+            position: relative;
+        }
+        .map-container .map-overlay {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .map-container .map-overlay .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        /* ============================================================
+               SERVICE LIST
+               ============================================================ */
         .service-list {
             background: #fff;
             border-radius: 16px;
             padding: 12px 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         .service-item {
             display: flex;
@@ -237,7 +361,9 @@
             font-weight: 600;
         }
 
-        /* ===== BUTTON WA ===== */
+        /* ============================================================
+               BUTTON WA
+               ============================================================ */
         .btn-wa {
             display: block;
             background: #25D366;
@@ -257,7 +383,9 @@
             transform: scale(0.97);
         }
 
-        /* ===== CONTACT GRID ===== */
+        /* ============================================================
+               CONTACT GRID
+               ============================================================ */
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
@@ -277,13 +405,15 @@
             font-weight: 600;
         }
 
-        /* ===== QRIS ===== */
+        /* ============================================================
+               QRIS
+               ============================================================ */
         .qr-container {
             background: #fff;
             border-radius: 16px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             margin-top: 12px;
         }
         .qr-container .merchant {
@@ -330,7 +460,9 @@
             background: #25D366;
         }
 
-        /* ===== EXTRA SERVICES ===== */
+        /* ============================================================
+               EXTRA SERVICES
+               ============================================================ */
         .extra-services {
             display: flex;
             flex-wrap: wrap;
@@ -346,18 +478,25 @@
             font-weight: 500;
         }
 
-        /* ===== ORDER CARD ===== */
+        /* ============================================================
+               ORDER CARD
+               ============================================================ */
         .order-card {
             background: #fff;
             border-radius: 14px;
             padding: 14px 16px;
             margin-bottom: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 6px;
+            border-left: 4px solid #6C3CE1;
+            transition: transform 0.2s;
+        }
+        .order-card:active {
+            transform: scale(0.98);
         }
         .order-card .info {
             font-size: 14px;
@@ -373,6 +512,11 @@
         .order-card .info .point-earn {
             font-size: 11px;
             color: #F59E0B;
+            font-weight: 600;
+        }
+        .order-card .info .distance {
+            font-size: 11px;
+            color: #6C3CE1;
             font-weight: 600;
         }
         .order-card .status {
@@ -403,12 +547,14 @@
             font-size: 14px;
         }
 
-        /* ===== PAYROLL / EARNING CARD ===== */
+        /* ============================================================
+               EARNING CARD
+               ============================================================ */
         .earning-card {
             background: #fff;
             border-radius: 16px;
             padding: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             margin-top: 10px;
         }
         .earning-card .row {
@@ -448,12 +594,14 @@
             transition: width 0.5s ease;
         }
 
-        /* ===== DAFTAR FORM ===== */
+        /* ============================================================
+               REGISTER FORM
+               ============================================================ */
         .register-form {
             background: #fff;
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         .register-form input,
         .register-form select {
@@ -488,8 +636,20 @@
         .register-form .btn-register:active {
             transform: scale(0.97);
         }
+        .register-form .geo-status {
+            font-size: 12px;
+            color: #4ade80;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
 
-        /* ===== DESA GRID ===== */
+        /* ============================================================
+               DESA GRID
+               ============================================================ */
         .desa-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -500,204 +660,8 @@
             border-radius: 14px;
             padding: 12px 10px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .desa-card .name {
-            font-weight: 700;
-            font-size: 14px;
-        }
-        .desa-card .kurir {
-            font-size: 12px;
-            color: #888;
-        }
-        .desa-card .count {
-            font-size: 12px;
-            color: #6C3CE1;
-            font-weight: 600;
-        }
-
-        /* ===== BOTTOM NAV ===== */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            display: flex;
-            justify-content: space-around;
-            padding: 6px 0 10px;
-            border-top: 1px solid #eee;
-            box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
-            z-index: 100;
-        }
-        .bottom-nav a {
-            text-decoration: none;
-            text-align: center;
-            color: #999;
-            font-size: 10px;
-            font-weight: 600;
-            flex: 1;
-        }
-        .bottom-nav a.active {
-            color: #6C3CE1;
-        }
-        .bottom-nav a .icon {
-            font-size: 22px;
-            display: block;
-            margin-bottom: 1px;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer-text {
-            text-align: center;
-            font-size: 12px;
-            color: #ccc;
-            padding: 16px 0 6px;
-        }
-        .footer-text .credit {
-            font-weight: 600;
-            color: #6C3CE1;
-        }
-
-        /* ===== ROLE SWITCH ===== */
-        .role-switch {
-            display: flex;
-            gap: 8px;
-            padding: 0 16px 12px;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-        }
-        .role-btn {
-            padding: 6px 16px;
-            border-radius: 50px;
-            border: 2px solid #6C3CE1;
-            background: transparent;
-            color: #6C3CE1;
-            font-weight: 700;
-            font-size: 12px;
-            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s;
             cursor: pointer;
-            transition: 0.2s;
         }
-        .role-btn.active {
-            background: #6C3CE1;
-            color: #fff;
-        }
-        .role-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* ===== HIDDEN ===== */
-        .hidden {
-            display: none !important;
-        }
-
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: #1e1e2f;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 14px;
-            z-index: 999;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-width: 90%;
-            text-align: center;
-            pointer-events: none;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-        }
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ===== TOAST ===== -->
-    <div class="toast" id="toast">✅ Berhasil!</div>
-
-    <!-- ===== HEADER ===== -->
-    <div class="header">
-        <div class="header-top">
-            <div class="brand">🧺 Zeevanna Digital</div>
-            <a href="#" class="notif" id="notifBtn">
-                🔔 <span class="dot"></span>
-            </a>
-        </div>
-        <div class="greeting">👋 Selamat datang, <span id="userName">Admin Pusat</span></div>
-        <div class="sub">Jasa Setrika & Laundry Online • Kab. Pandeglang</div>
-        <span class="role-badge" id="roleBadge">👑 Admin</span>
-    </div>
-
-    <!-- ===== SALDO CARD (Gojek Style) ===== -->
-    <div class="saldo-card">
-        <div class="item">
-            <div class="label">💰 Saldo</div>
-            <div class="value" id="saldoValue">Rp 12.500.000</div>
-        </div>
-        <div class="item">
-            <div class="label">⭐ Poin</div>
-            <div class="value gold" id="poinValue">15.320</div>
-        </div>
-        <div class="item">
-            <div class="label">📦 Pesanan</div>
-            <div class="value" id="orderCount">1.247</div>
-        </div>
-    </div>
-
-    <!-- ===== ROLE SWITCH ===== -->
-    <div class="role-switch">
-        <button class="role-btn active" data-role="admin">👑 Admin</button>
-        <button class="role-btn" data-role="kurir">🚚 Kurir</button>
-        <button class="role-btn" data-role="pekerja">🧺 Pekerja</button>
-        <button class="role-btn" data-role="pelanggan">👤 Pelanggan</button>
-    </div>
-
-    <!-- ===== STATUS GRID ===== -->
-    <div class="status-grid">
-        <a href="#" class="status-item">
-            <span class="icon">📦</span>
-            <span class="label">Semua</span>
-            <span class="count" id="countAll">1.247</span>
-        </a>
-        <a href="#" class="status-item">
-            <span class="icon">⏳</span>
-            <span class="label">Diproses</span>
-            <span class="count" id="countProcess">342</span>
-        </a>
-        <a href="#" class="status-item">
-            <span class="icon">🚚</span>
-            <span class="label">Diantar</span>
-            <span class="count" id="countDeliver">156</span>
-        </a>
-        <a href="#" class="status-item">
-            <span class="icon">✅</span>
-            <span class="label">Selesai</span>
-            <span class="count" id="countDone">749</span>
-        </a>
-    </div>
-
-    <!-- ===== MENU GRID ===== -->
-    <div class="menu-grid">
-        <a href="#pesan" class="menu-item">
-            <span class="icon">📋</span>
-            <span class="label">Pesan</span>
-        </a>
-        <a href="#daftar" class="menu-item">
-            <span class="icon">📝</span>
-            <span class="label">Daftar</span>
-        </a>
-        <a href="#payroll" class="menu-item">
-            <span class="icon">💳</span>
-            <span class="label">Payroll</span>
-        </a>
-        <a href="#kontak" class="menu-item">
-            <span class="icon">📞</span>
-            <span class="label">Kontak</span>
-        </a>
-    </d
+        
